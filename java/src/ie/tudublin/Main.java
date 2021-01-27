@@ -26,5 +26,15 @@ public class Main
         // 2. garfield, Garfield 
 
 
+        // Lab 1 - 5
+        Cat ginger = new Cat("Ginger");
+
+        int numLives = ginger.getLives();
+
+        for(int i = 0; i < numLives+1; i++)
+        {
+            ginger.kill();
+        } // end for
+
     }
 } 
