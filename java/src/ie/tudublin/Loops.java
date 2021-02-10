@@ -10,11 +10,14 @@ public class Loops extends PApplet {
         cy = height / 2;        
     }
 
+    // BTW: 'width' and 'height' are library variables that are equal to the width and the height of the window
+
     int mode = 0;
 
     float cx;
     float cy;
 
+    // Don't change the current mode value if a value outside the range 1-9 is entered
     public void keyPressed() {
         // the value of mode will be the number of the 
         // number key pressed
@@ -25,6 +28,9 @@ public class Loops extends PApplet {
     public void setup() {
         colorMode(HSB);
     }
+
+    // BTW: mouseX = the horizontal coordinate of the mouse
+    // rect() method = rect(upper left X coordinate, upper left Y coordinate, width, height)
 
     public void draw() {
         background(0);
@@ -63,6 +69,8 @@ public class Loops extends PApplet {
                 break;
             case 2:
             {
+                // number of rectangles = the location of the mouse divided by 10 - (btw: the f indicates to the compiler 
+                // that the number is a float)
                 int numRects = (int)(mouseX / 10.0f);
                 float w = width / (float) numRects;
                 float cgap = 255 / (float) numRects;
@@ -83,8 +91,45 @@ public class Loops extends PApplet {
                     fill(cgap * i, 255, 255);
                     ellipse(w / 2 + (i * w), cy, w, w);
                 }
+                break;
             }
-            break;
+            // diagonal squares
+            case 4:
+            {
+                for(int i = 0 ; i < 10 ; i ++)
+                {
+                    fill(i*25, 255, 255);
+                    rect(i * width/10, i*(height/10), width/10, height/10);
+                }
+                break;
+            }
+            //diagonal squares in shape of X
+            case 5:
+            {
+                for(int i = 0 ; i < 10 ; i ++)
+                {
+                    fill((9-i)*25, 255, 255);
+                    rect(i * width/10, i*(height/10), width/10, height/10);
+
+                    fill(i*25, 255, 255);
+                    rect(i * width/10, (9-i)*(height/10), width/10, height/10);
+                }
+                break;
+            }
+            case 6:
+            {
+                int numCircles = 21;
+                int w = (width/numCircles)*2;
+                int h = (height/numCircles)*2;
+
+                background(0);
+                for(int i = 0 ; i < numCircles ; i ++)
+                {
+                    fill((numCircles-1-i)*(width/numCircles), 255, 255);
+                    ellipse(width/2, height/2, (numCircles-1-i)*(h), (numCircles-1-i)*(w));
+                }
+                break;
+            }
         }
     }
 }
