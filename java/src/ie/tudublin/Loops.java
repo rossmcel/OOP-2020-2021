@@ -31,6 +31,7 @@ public class Loops extends PApplet {
 
     // BTW: mouseX = the horizontal coordinate of the mouse
     // rect() method = rect(upper left X coordinate, upper left Y coordinate, width, height)
+    // ellipse() method = ellipse(center X coordinate, center Y coordinate, width, height)
 
     public void draw() {
         background(0);
@@ -127,6 +128,27 @@ public class Loops extends PApplet {
                 {
                     fill((numCircles-1-i)*(width/numCircles), 255, 255);
                     ellipse(width/2, height/2, (numCircles-1-i)*(h), (numCircles-1-i)*(w));
+                }
+                break;
+            }
+            // full screen of circles
+            case 7:
+            {
+                int numCircles = (int)(mouseX / 10.0f);
+                float w = width / (float) numCircles;
+                float cgap = 255 / (float) numCircles;
+
+                for(int i = 0 ; i < numCircles ; i ++)
+                {
+                    fill(cgap * i, 255, 255);
+                    // w = full circle(from start to finish), w/2 = half circle (from start to mid point)
+                    // (i*w), adds a new circle one circle distance away from the previous circle
+                    ellipse(w / 2 + (i * w), 0 + w, w, w);
+
+                    for(int j = 0 ; j < numCircles ; j ++)
+                    {
+                        ellipse(w / 2 + (i * w), j*(0 + w), w, w);
+                    }
                 }
                 break;
             }
